@@ -1,8 +1,9 @@
 package com.ec.demo.controller;
 
+import com.ec.demo.service.DemoService;
 import com.ec.utils.JsonResult;
 import com.ec.demo.model.Demo;
-import com.ec.demo.service.DemoService;
+import com.ec.demo.service.DemoServiceImp;
 import com.ec.utils.JsonResultWrapper;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,28 +30,32 @@ public class DemoController {
     private DemoService demoService;
 
     @RequestMapping("/save")
-    public void  save(@ModelAttribute Demo demo) {
+    @JsonView(JsonResult.JsonResultView.class)
+    public JsonResult  save(@ModelAttribute Demo demo) {
         demoService.save(demo);
+        return  JsonResultWrapper.createSuccessResult();
     }
 
     @RequestMapping("/delete/{id}")
-    public void delete(@PathVariable int id) {
-        Demo demo = demoService.find(id);
-        demoService.delete(demo);
+    @JsonView(JsonResult.JsonResultView.class)
+    public JsonResult delete(@PathVariable int id) {
+        demoService.delete(id);
+        return  JsonResultWrapper.createSuccessResult();
+
     }
 
     @RequestMapping("/find/{id}")
     @JsonView(JsonResult.JsonResultView.class)
     public JsonResult find(@PathVariable int id) {
         Demo demo = demoService.find(id);
-        return JsonResultWrapper.createJsonResult("0",demo);
+        return JsonResultWrapper.createSuccessResult(demo);
     }
 
     @RequestMapping("/findAll")
     @JsonView(JsonResult.JsonResultView.class)
     public JsonResult findAll() {
         List<Demo> demoList = demoService.findAll();
-        return JsonResultWrapper.createJsonResult("0",demoList);
+        return JsonResultWrapper.createSuccessResult(demoList);
     }
 
     @RequestMapping("/count")
@@ -58,6 +64,13 @@ public class DemoController {
         int count  = demoService.count();
         Map<String,String> map = new HashMap<String,String>();
         map.put("count",String.valueOf(count));
-        return JsonResultWrapper.createJsonResult("0",map);
+        return JsonResultWrapper.createSuccessResult(map);
+    }
+
+    @RequestMapping("/test/{id}")
+    @JsonView(JsonResult.JsonResultView.class)
+    public JsonResult test(@PathVariable int id) {
+       // demoService.test(id);
+        return JsonResultWrapper.createSuccessResult();
     }
 }
