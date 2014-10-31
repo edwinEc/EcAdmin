@@ -17,35 +17,35 @@ import java.util.List;
 public abstract class BaseServiceImp<T> implements BaseService<T> {
 
     @Autowired
-    private BaseDao baseDao;
+    private BaseDao baseDaoImp;
 
     @Override
     public void save(T t){
-        baseDao.save(t);
+        baseDaoImp.save(t);
     }
 
     @Override
     public void delete(int id){
-        baseDao.delete(baseDao.find(id));
+        baseDaoImp.delete(baseDaoImp.find(id));
     }
 
     @Override
     public <T> T find(int id){
-        return (T)baseDao.find(id);
+        return (T)baseDaoImp.find(id);
     }
 
     @Override
     public int count() {
-        return baseDao.count();
+        return baseDaoImp.count();
     }
 
     @Override
     public List<T> findAll() {
-        return baseDao.findAll();
+        return baseDaoImp.findAll();
     }
 
     @Override
     public List<T> findByPage(int offset, int limit) {
-        return baseDao.findByPage(offset, limit);
+        return baseDaoImp.findByPage(offset, limit);
     }
 }

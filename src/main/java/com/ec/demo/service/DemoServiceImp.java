@@ -3,6 +3,7 @@ package com.ec.demo.service;
 import com.ec.base.service.BaseServiceImp;
 import com.ec.demo.dao.DemoDao;
 import com.ec.demo.model.Demo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,8 @@ import javax.annotation.Resource;
 @Service
 public class DemoServiceImp extends BaseServiceImp<Demo> implements DemoService{
 
-    @Resource(name= "demoDaoImp")
-    private DemoDao demoDao;
+    @Autowired
+    private DemoDao demoDaoImp;
 
 
 }
