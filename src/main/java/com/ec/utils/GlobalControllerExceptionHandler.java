@@ -1,5 +1,8 @@
 package com.ec.utils;
 
+import com.ec.demo.model.Demo;
+import com.ec.exception.BusinessException;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,11 +26,17 @@ public class GlobalControllerExceptionHandler {
 
     private static Logger logger = LogManager.getLogger(GlobalControllerExceptionHandler.class.getName());
 
-
     @ExceptionHandler(Exception.class)
+    @JsonView(BusinessException.BusinessExceptionView.class)
     public @ResponseBody
-    JsonResult handleException(Exception e) {
-        logger.error("handleException:",e);
-        return new JsonResult("-1",e.getMessage());
+    BusinessException handleException(Exception e) {
+        try{
+            if(e instanceof BusinessException)
+                return (BusinessException)e;
+            else
+                return new BusinessException();
+        }finally {
+            logger.error("handleException:",e);
+        }
     }
 }

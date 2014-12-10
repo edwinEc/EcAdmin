@@ -8,9 +8,9 @@ import java.util.List;
  * Time: 下午2:15
  */
 public interface BaseService<T>{
-    public void save(T t);
-    public void delete(int id);
-    public <T> T find(int id);
+    public T save(T t);
+    public T delete(int id);
+    public T find(int id);
     public int count();
     public List<T> findAll();
     List<T> findByPage(int offset, int limit) ;

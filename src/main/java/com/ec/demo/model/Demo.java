@@ -1,14 +1,13 @@
 package com.ec.demo.model;
 
 
-import com.ec.utils.JsonResult;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 /**
@@ -28,7 +27,7 @@ public class Demo implements Serializable {
     private String username;
     private String password;
 
-    @JsonView(JsonResult.JsonResultView.class)
+    @JsonView(Demo.DemoView.class)
     public int getId() {
         return id;
     }
@@ -37,7 +36,7 @@ public class Demo implements Serializable {
         this.id = id;
     }
 
-    @JsonView(JsonResult.JsonResultView.class)
+    @JsonView(Demo.DemoView.class)
     public String getUsername() {
         return username;
     }
@@ -46,7 +45,7 @@ public class Demo implements Serializable {
         this.username = username;
     }
 
-    @JsonView(JsonResult.JsonResultView.class)
+    @JsonView(Demo.DemoView.class)
     public String getPassword() {
         return password;
     }

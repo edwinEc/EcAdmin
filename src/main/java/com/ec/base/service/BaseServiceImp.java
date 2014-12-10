@@ -20,17 +20,19 @@ public abstract class BaseServiceImp<T> implements BaseService<T> {
     private BaseDao baseDaoImp;
 
     @Override
-    public void save(T t){
-        baseDaoImp.save(t);
+    public T save(T t){
+        return (T)baseDaoImp.save(t);
     }
 
     @Override
-    public void delete(int id){
-        baseDaoImp.delete(baseDaoImp.find(id));
+    public T delete(int id){
+        T entity = find(id);
+        baseDaoImp.delete(entity);
+        return entity;
     }
 
     @Override
-    public <T> T find(int id){
+    public T find(int id){
         return (T)baseDaoImp.find(id);
     }
 

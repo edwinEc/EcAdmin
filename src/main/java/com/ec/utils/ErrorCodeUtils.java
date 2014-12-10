@@ -25,7 +25,7 @@ public class ErrorCodeUtils {
         this.env = environment;
     }
 
-    public static String getErrorMsg(String errorCode){
-        return env.getProperty(errorCode);
+    public static String getErrorMsg(int errorCode){
+        return env.getProperty(String.valueOf(errorCode));
     }
 }

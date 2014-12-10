@@ -29,13 +29,13 @@ public abstract class BaseDaoImp<T> implements BaseDao<T> {
     protected EntityManager entityManager;
 
     @Override
-    public <T> T find(int id) {
-        return (T)entityManager.find(entityClass, id);
+    public T find(int id) {
+        return entityManager.find(entityClass, id);
     }
 
     @Override
-    public void save(T t) {
-        entityManager.merge(t);
+    public T save(T t) {
+        return entityManager.merge(t);
     }
 
     @Override

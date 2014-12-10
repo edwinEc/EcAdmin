@@ -8,8 +8,8 @@ import java.util.List;
  * Time: 下午2:14
  */
 public interface BaseDao<T>{
-    <T> T find(int id);
-    void save(T t);
+    T find(int id);
+    T save(T t);
     void delete(T t);
     int count();
     List<T> findByPage(int offset, int limit) ;

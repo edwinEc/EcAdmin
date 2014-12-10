@@ -1,14 +1,13 @@
 package com.ec.security.controller;
 
+import com.ec.demo.model.Demo;
 import com.ec.demo.service.DemoService;
-import com.ec.utils.JsonResult;
-import com.ec.demo.service.DemoServiceImp;
-import com.ec.utils.JsonResultWrapper;
+import com.ec.exception.BusinessException;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * User: chaocui200783
@@ -22,11 +21,11 @@ public class SecurityController {
     @Autowired
     private DemoService demoService;
 
+    @JsonView(BusinessException.BusinessExceptionView.class)
+
     @RequestMapping("/validate")
-    @JsonView(JsonResult.JsonResultView.class)
-    public JsonResult  validate(@RequestParam(value="username")String username,
+    public void  validate(@RequestParam(value="username")String username,
                                 @RequestParam(value="password")String password) {
-        return JsonResultWrapper.createSuccessResult();
     }
 
 }
