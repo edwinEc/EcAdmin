@@ -1,5 +1,6 @@
 package com.ec.base.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Date: 14-10-25
  * Time: 下午2:15
  */
-public interface BaseService<T>{
+public interface BaseService<T extends Serializable>{
     public T save(T t);
     public T delete(int id);
     public T find(int id);

@@ -1,13 +1,11 @@
 package com.ec.demo.service;
 
-import com.ec.base.service.BaseServiceImp;
+import com.ec.base.service.BaseServiceImpl;
 import com.ec.demo.dao.DemoDao;
 import com.ec.demo.model.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * User: chaocui200783
@@ -16,10 +14,9 @@ import javax.annotation.Resource;
  */
 @Transactional
 @Service
-public class DemoServiceImp extends BaseServiceImp<Demo> implements DemoService{
-
+public class DemoServiceImpl extends BaseServiceImpl<Demo> implements DemoService{
     @Autowired
-    private DemoDao demoDaoImp;
+    private DemoDao demoDao;
 
 
 }

@@ -1,12 +1,11 @@
 package com.ec.base.dao;
 
-import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -15,18 +14,17 @@ import java.util.List;
  * Date: 14-10-28
  * Time: 下午4:58
  */
-@Repository
-public abstract class BaseDaoImp<T> implements BaseDao<T> {
+public abstract class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
     protected Class<T> entityClass;
     protected String className;
-    public BaseDaoImp(){
+    public BaseDaoImpl(){
         entityClass=(Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         className=entityClass.getName();
     }
 
     @PersistenceContext
-    protected EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public T find(int id) {
@@ -75,5 +73,9 @@ public abstract class BaseDaoImp<T> implements BaseDao<T> {
         query.select(root);
         List<T> result = entityManager.createQuery(query).getResultList();
         return result;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 }

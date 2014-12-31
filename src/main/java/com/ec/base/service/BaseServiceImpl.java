@@ -2,9 +2,8 @@ package com.ec.base.service;
 
 import com.ec.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,42 +11,41 @@ import java.util.List;
  * Date: 14-10-29
  * Time: 下午5:21
  */
-@Transactional
-@Service
-public abstract class BaseServiceImp<T> implements BaseService<T> {
+@SuppressWarnings("ALL")
+public abstract class BaseServiceImpl<T extends Serializable> implements BaseService<T> {
 
     @Autowired
-    private BaseDao baseDaoImp;
+    private BaseDao<T> baseDao;
 
     @Override
     public T save(T t){
-        return (T)baseDaoImp.save(t);
+        return baseDao.save(t);
     }
 
     @Override
     public T delete(int id){
         T entity = find(id);
-        baseDaoImp.delete(entity);
+        baseDao.delete(entity);
         return entity;
     }
 
     @Override
     public T find(int id){
-        return (T)baseDaoImp.find(id);
+        return baseDao.find(id);
     }
 
     @Override
     public int count() {
-        return baseDaoImp.count();
+        return baseDao.count();
     }
 
     @Override
     public List<T> findAll() {
-        return baseDaoImp.findAll();
+        return baseDao.findAll();
     }
 
     @Override
     public List<T> findByPage(int offset, int limit) {
-        return baseDaoImp.findByPage(offset, limit);
+        return baseDao.findByPage(offset, limit);
     }
 }

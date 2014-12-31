@@ -1,5 +1,6 @@
 package com.ec.base.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Date: 14-10-25
  * Time: 下午2:14
  */
-public interface BaseDao<T>{
+public interface BaseDao<T extends Serializable>{
     T find(int id);
     T save(T t);
     void delete(T t);

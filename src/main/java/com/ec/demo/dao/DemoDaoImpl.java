@@ -1,6 +1,6 @@
 package com.ec.demo.dao;
 
-import com.ec.base.dao.BaseDaoImp;
+import com.ec.base.dao.BaseDaoImpl;
 import com.ec.demo.model.Demo;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * Time: 下午2:16
  */
 @Repository
-public class DemoDaoImp extends BaseDaoImp<Demo> implements DemoDao {
+public class DemoDaoImpl extends BaseDaoImpl<Demo> implements DemoDao {
 
 
 
