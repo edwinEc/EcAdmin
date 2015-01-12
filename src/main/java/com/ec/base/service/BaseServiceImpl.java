@@ -2,6 +2,7 @@ package com.ec.base.service;
 
 import com.ec.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * Time: 下午5:21
  */
 @SuppressWarnings("ALL")
+@Transactional
 public abstract class BaseServiceImpl<T extends Serializable> implements BaseService<T> {
 
     @Autowired
