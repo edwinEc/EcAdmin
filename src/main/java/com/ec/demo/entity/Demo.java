@@ -1,4 +1,4 @@
-package com.ec.demo.model;
+package com.ec.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonView;

@@ -1,7 +1,8 @@
 package com.ec.demo.controller;
 
-import com.ec.demo.model.Demo;
+import com.ec.demo.entity.Demo;
 import com.ec.demo.service.DemoService;
+import com.ec.exception.BusinessException;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,8 +45,10 @@ public class DemoController {
 
     @RequestMapping("/findAll")
     @JsonView(Demo.DemoView.class)
-    public List<Demo> findAll() {
-        return demoService.findAll();
+    public List<Demo> findAll() throws BusinessException {
+
+        throw new BusinessException(1);
+        //return demoService.findAll();
     }
 
     @RequestMapping("/count")

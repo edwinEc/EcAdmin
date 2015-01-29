@@ -1,6 +1,5 @@
 package com.ec.security.controller;
 
-import com.ec.demo.model.Demo;
 import com.ec.demo.service.DemoService;
 import com.ec.exception.BusinessException;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -21,7 +20,6 @@ public class SecurityController {
     @Autowired
     private DemoService demoService;
 
-    @JsonView(BusinessException.BusinessExceptionView.class)
 
     @RequestMapping("/validate")
     public void  validate(@RequestParam(value="username")String username,

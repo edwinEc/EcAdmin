@@ -1,20 +1,14 @@
 package com.ec.utils;
 
-import com.ec.demo.model.Demo;
+import com.ec.base.model.Result;
 import com.ec.exception.BusinessException;
 import com.fasterxml.jackson.annotation.JsonView;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * User: chaocui200783
@@ -26,17 +20,25 @@ public class GlobalControllerExceptionHandler {
 
     private static Logger logger = LogManager.getLogger(GlobalControllerExceptionHandler.class.getName());
 
-    @ExceptionHandler(Exception.class)
-    @JsonView(BusinessException.BusinessExceptionView.class)
+    @ExceptionHandler(BusinessException.class)
+    @JsonView(Result.ResultView.class)
     public @ResponseBody
-    BusinessException handleException(Exception e) {
+    Result handleException(BusinessException e) {
         try{
-            if(e instanceof BusinessException)
-                return (BusinessException)e;
-            else
-                return new BusinessException();
+            return new Result(e.getErrorCode(),e.getErrorMsg());
         }finally {
-            logger.error("handleException:",e);
+            logger.error("BusinessException:",e);
+        }
+    }
+
+    @ExceptionHandler(Exception.class)
+    @JsonView(Result.ResultView.class)
+    public @ResponseBody
+    Result handleException(Exception e) {
+        try{
+            return new Result(-1,"unknown error");
+        }finally {
+            logger.error("Exception:",e);
         }
     }
 }

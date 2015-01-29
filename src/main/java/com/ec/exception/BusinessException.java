@@ -10,35 +10,23 @@ import com.fasterxml.jackson.annotation.JsonView;
  */
 public class BusinessException extends Exception{
 
-    public interface BusinessExceptionView{};
-
-    private int errorCode = -1;
-    private String errorMsg = "unknown";
+    private int errorCode;
+    private String errorMsg;
 
     public BusinessException(int errorCode){
           this.errorCode = errorCode;
           this.errorMsg  =  ErrorCodeUtils.getErrorMsg(errorCode);
+          if(errorMsg==null){
+              this.errorMsg = "undefined error";
+          }
     }
 
-    public BusinessException(){
-
-    }
-
-    @JsonView(BusinessExceptionView.class)
     public int getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    @JsonView(BusinessExceptionView.class)
     public String getErrorMsg() {
         return errorMsg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 }

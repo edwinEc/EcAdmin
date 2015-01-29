@@ -1,4 +1,4 @@
-package com.ec.base.dao;
+package com.ec.base.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +14,11 @@ import java.util.List;
  * Date: 14-10-28
  * Time: 下午4:58
  */
-public abstract class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
+public abstract class BaseRepositoryImpl<T extends Serializable> implements BaseRepository<T> {
 
     protected Class<T> entityClass;
     protected String className;
-    public BaseDaoImpl(){
+    public BaseRepositoryImpl(){
         entityClass=(Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         className=entityClass.getName();
     }
