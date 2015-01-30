@@ -11,12 +11,10 @@ import java.util.List;
  * Time: 下午5:25
  */
 public interface DemoService extends BaseService{
-    public Demo find(int id);
+    public Demo find(long id);
     public List<Demo> findAll();
-    public int count();
+    public long count();
     public Demo save(Demo demo);
-    public Demo delete(int id);
-
-
-
+    public void delete(long id);
+    public Demo findByUsername(String username);
 }

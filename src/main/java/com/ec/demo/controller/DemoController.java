@@ -32,9 +32,8 @@ public class DemoController {
 
     @RequestMapping("/delete/{id}")
     @JsonView(Demo.DemoView.class)
-    public Demo delete(@PathVariable int id) {
-        return  demoService.delete(id);
-
+    public void delete(@PathVariable int id) {
+        demoService.delete(id);
     }
 
     @RequestMapping("/find/{id}")
@@ -43,17 +42,21 @@ public class DemoController {
         return demoService.find(id);
     }
 
+    @RequestMapping("/findByUsername/{username}")
+    @JsonView(Demo.DemoView.class)
+    public Demo find(@PathVariable String username) {
+        return demoService.findByUsername(username);
+    }
+
     @RequestMapping("/findAll")
     @JsonView(Demo.DemoView.class)
     public List<Demo> findAll() throws BusinessException {
-
-        throw new BusinessException(1);
-        //return demoService.findAll();
+        return demoService.findAll();
     }
 
     @RequestMapping("/count")
     @JsonView(Demo.DemoView.class)
-    public int count() {
+    public long count() {
         return demoService.count();
     }
 

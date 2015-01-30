@@ -1,18 +1,19 @@
 package com.ec.base.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * User: chaocui200783
  * Date: 14-10-25
  * Time: 下午2:14
  */
-public interface BaseRepository<T extends Serializable>{
-    T find(int id);
-    T save(T t);
-    void delete(T t);
-    int count();
-    List<T> findByPage(int offset, int limit) ;
-    List<T> findAll();
+
+@NoRepositoryBean
+public interface BaseRepository<T, ID extends Serializable> extends CrudRepository<T,ID>,PagingAndSortingRepository<T,ID>,JpaRepository<T,ID> {
+
 }

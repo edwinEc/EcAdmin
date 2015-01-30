@@ -19,26 +19,24 @@ public class DemoServiceImpl  implements DemoService{
     @Autowired
     private DemoRepository demoRepository;
 
-    public Demo find(int id){
-        return demoRepository.find(id);
+    public Demo find(long id){
+        return demoRepository.findOne(id);
+    }
+    public Demo findByUsername(String username){
+        return demoRepository.findByUsername(username);
     }
 
     public List<Demo> findAll(){
         return demoRepository.findAll();
     }
-    public int count(){
+    public long count(){
             return demoRepository.count();
     }
     public Demo save(Demo demo){
         return demoRepository.save(demo);
     }
-    public Demo delete(int id){
-        Demo demo = demoRepository.find(id);
-        if(demo!=null){
-            demoRepository.delete(demo);
-            return demo;
-        }
-        return null;
+    public void delete(long id){
+        demoRepository.delete(id);
     }
 
 
